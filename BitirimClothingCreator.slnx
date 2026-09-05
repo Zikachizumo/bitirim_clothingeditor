@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Bitirim.Clothing.Core/Bitirim.Clothing.Core.csproj" />
+    <Project Path="src/Bitirim.Clothing.Desktop/Bitirim.Clothing.Desktop.csproj" />
+    <Project Path="src/Bitirim.Clothing.Editor/Bitirim.Clothing.Editor.csproj" />
+    <Project Path="src/Bitirim.Clothing.Export/Bitirim.Clothing.Export.csproj" />
+    <Project Path="src/Bitirim.Clothing.FiveFury/Bitirim.Clothing.FiveFury.csproj" />
+    <Project Path="src/Bitirim.Clothing.Textures/Bitirim.Clothing.Textures.csproj" />
+    <Project Path="src/Bitirim.Clothing.Validation/Bitirim.Clothing.Validation.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Bitirim.Clothing.Tests/Bitirim.Clothing.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/Bitirim.Clothing.Tester/Bitirim.Clothing.Tester.csproj" />
+  </Folder>
+</Solution>

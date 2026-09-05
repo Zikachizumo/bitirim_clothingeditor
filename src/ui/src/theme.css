@@ -1,0 +1,142 @@
+/*
+ * Bitirim Clothing Creator - design tokens.
+ *
+ * Charcoal surfaces with a single lime accent, borrowed from nothing in
+ * particular. Panels are separated by hairlines and small elevation shifts
+ * rather than heavy borders, which is what makes a dense tool readable.
+ *
+ * No blur filters: they cost real frames on the mid-range machines this is
+ * meant to run on, and buy nothing in a tool this dense.
+ */
+
+:root {
+  /* Surfaces, darkest to lightest */
+  --bg-0: #0b0c0a;
+  --bg-1: #0e0f0d;
+  --bg-2: #141613;
+  --bg-3: #191c17;
+  --bg-4: #20241c;
+
+  --line: #23271f;
+  --line-strong: #2e332a;
+
+  /* Text */
+  --fg: #e7eae3;
+  --fg-dim: #a3aa9b;
+  --fg-muted: #6e756a;
+  --fg-faint: #4a5145;
+
+  /* Accent */
+  --accent: #a8e10c;
+  --accent-dim: #7ba309;
+  --accent-fg: #0b0c0a;
+  --accent-soft: rgba(168, 225, 12, 0.14);
+  --accent-line: rgba(168, 225, 12, 0.32);
+
+  /* Semantic */
+  --ok: #6fd36f;
+  --warn: #e5b446;
+  --error: #e2564a;
+  --info: #59a7e0;
+  --mock: #b07be0;
+  --experimental: #e08c3c;
+
+  /* Geometry */
+  --radius: 6px;
+  --radius-lg: 10px;
+  --row: 26px;
+  --panel-header: 30px;
+
+  /* Type */
+  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Cascadia Mono", "Consolas", ui-monospace, monospace;
+  --fs-xs: 10.5px;
+  --fs-sm: 11.5px;
+  --fs-md: 12.5px;
+  --fs-lg: 14px;
+  --fs-xl: 18px;
+
+  --shadow: 0 12px 34px rgba(0, 0, 0, 0.55);
+}
+
+:root[data-theme='light'] {
+  --bg-0: #eceee9;
+  --bg-1: #f4f5f2;
+  --bg-2: #ffffff;
+  --bg-3: #f7f8f5;
+  --bg-4: #eaece6;
+  --line: #d8dbd3;
+  --line-strong: #c3c7bd;
+  --fg: #1a1d18;
+  --fg-dim: #4b5147;
+  --fg-muted: #6e756a;
+  --fg-faint: #949a8f;
+  --accent: #5f8c06;
+  --accent-dim: #4c7005;
+  --accent-fg: #ffffff;
+  --accent-soft: rgba(95, 140, 6, 0.12);
+  --accent-line: rgba(95, 140, 6, 0.3);
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg-1);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: var(--fs-md);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  cursor: default;
+}
+
+/* The window frame is the host's; nothing here should feel like a web page. */
+a { color: var(--accent); }
+button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+
+input, textarea, select {
+  background: var(--bg-0);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 5px 8px;
+  outline: none;
+  user-select: text;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent-line);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+input[type='range'] { padding: 0; border: none; background: transparent; accent-color: var(--accent); }
+input[type='color'] { padding: 0; width: 30px; height: 22px; cursor: pointer; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg-4); border-radius: 6px; border: 2px solid var(--bg-1); }
+::-webkit-scrollbar-thumb:hover { background: var(--line-strong); }
+
+.mono { font-family: var(--mono); font-size: var(--fs-sm); }
+.dim { color: var(--fg-dim); }
+.muted { color: var(--fg-muted); }
+.faint { color: var(--fg-faint); }
+.right { text-align: right; }
+.grow { flex: 1 1 auto; min-width: 0; min-height: 0; }
+.row { display: flex; align-items: center; gap: 8px; }
+.col { display: flex; flex-direction: column; min-height: 0; }
+.wrap { flex-wrap: wrap; }
+.scroll { overflow: auto; }
+.nowrap { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* A value the application genuinely does not have. Never a zero, never a
+   guess -- see the status bar and properties panel. */
+.na { color: var(--fg-faint); font-family: var(--mono); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }

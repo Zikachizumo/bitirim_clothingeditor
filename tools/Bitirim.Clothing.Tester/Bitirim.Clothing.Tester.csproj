@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>BitirimClothing.Tester</AssemblyName>
+    <RootNamespace>Bitirim.Clothing.Tester</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.Core\Bitirim.Clothing.Core.csproj" />
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.FiveFury\Bitirim.Clothing.FiveFury.csproj" />
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.Textures\Bitirim.Clothing.Textures.csproj" />
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.Export\Bitirim.Clothing.Export.csproj" />
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.Validation\Bitirim.Clothing.Validation.csproj" />
+  </ItemGroup>
+</Project>

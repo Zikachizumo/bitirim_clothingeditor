@@ -1,0 +1,61 @@
+.viewport { display: flex; flex-direction: column; height: 100%; min-width: 0; background: var(--bg-1); }
+
+/*
+ * The toolbar scrolls sideways rather than clipping.
+ *
+ * The viewport shares its row with the texture editor and the UV view, so it
+ * routinely gets less than half the window. Silently hiding the shading modes
+ * off the right edge would leave controls nobody can find; a thin scroll keeps
+ * them all reachable at any width.
+ */
+.viewport-toolbar {
+  display: flex; align-items: center; gap: 6px;
+  height: var(--panel-header); min-height: var(--panel-header);
+  padding: 0 8px;
+  background: var(--bg-3);
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto; overflow-y: hidden;
+  scrollbar-width: thin;
+}
+.viewport-toolbar::-webkit-scrollbar { height: 4px; }
+.viewport-toolbar > * { flex: 0 0 auto; }
+.viewport-toolbar > .grow { flex: 1 1 auto; }
+
+.vt-group { display: flex; gap: 2px; }
+.vt-sep { width: 1px; height: 16px; background: var(--line-strong); margin: 0 3px; }
+
+.vt-btn {
+  min-width: 22px; height: 20px; padding: 0 5px;
+  background: transparent; border: 1px solid transparent; border-radius: 3px;
+  color: var(--fg-muted); font-size: var(--fs-xs); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer;
+}
+.vt-btn.wide { padding: 0 8px; }
+.vt-btn:hover { background: var(--bg-4); color: var(--fg); }
+.vt-btn.active { background: var(--accent-soft); border-color: var(--accent-line); color: var(--accent); }
+
+.viewport-canvas { flex: 1 1 auto; position: relative; min-height: 0; overflow: hidden; }
+.viewport-canvas canvas { display: block; width: 100%; height: 100%; }
+
+.viewport-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; pointer-events: none; background: rgba(14, 15, 13, 0.72);
+}
+.viewport-overlay > * { pointer-events: auto; }
+
+.viewport-status {
+  display: flex; align-items: center; gap: 12px;
+  height: 22px; min-height: 22px; padding: 0 10px;
+  background: var(--bg-2); border-top: 1px solid var(--line);
+  font-size: var(--fs-xs); color: var(--fg-muted);
+  overflow: hidden;
+}
+/* Counters must stay on one line; the file name truncates instead. */
+.viewport-status > span { white-space: nowrap; flex: 0 0 auto; }
+.viewport-status > span:first-child {
+  flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis;
+}
+
+.vt-fov { display: inline-flex; align-items: center; gap: 5px; }
+.vt-fov input[type="range"] { width: 64px; }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Bitirim Clothing Creator installer.
+
+  Everything the application needs is inside the payload: the .NET runtime is
+  published self-contained, and the Python runtime plus asset service are
+  staged beside the executable. The user installs nothing else.
+
+  WebView2 is the one exception. It ships with Windows 11 and current Windows 10,
+  so the installer checks for it and points the user at Microsoft's free
+  installer rather than bundling a redistributable we would have to keep current.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+
+  <Package Name="Bitirim Clothing Creator"
+           Manufacturer="Bitirim"
+           Version="$(Version)"
+           UpgradeCode="7B5F1C42-9A3E-4D18-B6C7-2E4A8F0D9315"
+           Scope="perMachine"
+           Compressed="yes">
+
+    <SummaryInformation Description="GTA V / FiveM Clothing Development Studio" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Bitirim Clothing Creator is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Launch Condition="Installed OR VersionNT64"
+            Message="Bitirim Clothing Creator requires 64-bit Windows 10 or Windows 11." />
+
+    <!-- Informational only: the app shows its own guidance if the runtime is
+         absent, so a missing WebView2 must not block installation. -->
+    <Property Id="WEBVIEW2">
+      <RegistrySearch Id="WebView2Search" Root="HKLM"
+                      Key="SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}"
+                      Name="pv" Type="raw" />
+    </Property>
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="CompanyFolder" Name="Bitirim">
+        <Directory Id="INSTALLFOLDER" Name="Clothing Creator" />
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="AppShortcutFolder" Name="Bitirim Clothing Creator" />
+    </StandardDirectory>
+
+    <Feature Id="Main" Title="Bitirim Clothing Creator" Level="1">
+      <!-- Harvested from the staged publish folder at build time: the app, the
+           web UI, the asset service and the Python runtime. -->
+      <Files Include="$(AppDir)\**" Directory="INSTALLFOLDER" />
+      <ComponentRef Id="StartMenuShortcut" />
+      <ComponentRef Id="FileAssociation" />
+    </Feature>
+
+    <DirectoryRef Id="AppShortcutFolder">
+      <Component Id="StartMenuShortcut" Guid="D4A2E961-3C77-4B05-9E18-6F2C0A7B3D84">
+        <Shortcut Id="AppShortcut"
+                  Name="Bitirim Clothing Creator"
+                  Description="GTA V / FiveM Clothing Development Studio"
+                  Target="[INSTALLFOLDER]BitirimClothingCreator.exe"
+                  WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="RemoveAppShortcutFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Bitirim\ClothingCreator"
+                       Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Double-clicking a project package opens it in the editor. -->
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="FileAssociation" Guid="8E1B7F30-5D62-4A99-B3C4-1A9D5E27C608">
+        <RegistryValue Root="HKCR" Key=".bitirimclothing"
+                       Type="string" Value="Bitirim.ClothingProject" />
+        <RegistryValue Root="HKCR" Key="Bitirim.ClothingProject"
+                       Type="string" Value="Bitirim Clothing Project" />
+        <RegistryValue Root="HKCR" Key="Bitirim.ClothingProject\DefaultIcon"
+                       Type="string" Value="[INSTALLFOLDER]BitirimClothingCreator.exe,0" />
+        <RegistryValue Root="HKCR" Key="Bitirim.ClothingProject\shell\open\command"
+                       Type="string" Value="&quot;[INSTALLFOLDER]BitirimClothingCreator.exe&quot; &quot;%1&quot;" />
+      </Component>
+    </DirectoryRef>
+
+    <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
+
+    <Property Id="WIXUI_EXITDIALOGOPTIONALTEXT"
+              Value="Bitirim Clothing Creator is installed. FiveM export is experimental and has not yet been validated in a running game." />
+  </Package>
+</Wix>

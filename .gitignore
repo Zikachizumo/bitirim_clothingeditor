@@ -1,0 +1,47 @@
+# Build output (redirected off-tree by Directory.Build.props to dodge MAX_PATH)
+bin/
+obj/
+
+# Bundled Python runtime. Fetched by tools/bootstrap-runtime.ps1, never committed.
+runtime/
+
+# GTA assets extracted from the developer's own game install.
+# NEVER commit Rockstar assets -- see docs/legal-and-oss.md rule 5.
+test-assets/fixtures/
+*.ydd
+*.ytd
+*.ymt
+*.yft
+*.ybn
+*.ydr
+*.rpf
+
+# Generated test output
+test-assets/generated/
+*.user
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Node / UI build
+node_modules/
+src/ui/dist/
+*.tsbuildinfo
+
+# Installer intermediates
+*.wixpdb
+
+# Local configuration. Holds the Gemini API key; never committed.
+# See .env.example for the shape of it.
+.env
+.env.local
+
+# Frames pulled from the reference product's marketing video.
+#
+# Fine as private research -- they are why video-parity.md exists. Not fine in
+# a public repository: legal-and-oss.md rule 3 allows cataloguing what that
+# product does and forbids reproducing its visual design, brand and icons, and
+# publishing its UI screenshots is the second thing. The written inventory
+# stays; the pictures do not.
+docs/research/frames/

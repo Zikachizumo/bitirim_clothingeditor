@@ -1,0 +1,80 @@
+<Window x:Class="Bitirim.Clothing.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        Title="Bitirim Clothing Creator"
+        Width="1600" Height="960"
+        MinWidth="1280" MinHeight="720"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundBrush}"
+        AllowDrop="True"
+        UseLayoutRounding="True">
+
+    <Grid>
+        <!-- The React UI. Hidden until it reports ready, so the user never sees
+             a white flash or a half-painted layout. -->
+        <wv2:WebView2 x:Name="WebView" Visibility="Collapsed" DefaultBackgroundColor="#0E0F0D" />
+
+        <!-- Splash. Native, so it appears immediately rather than waiting on the
+             WebView runtime to initialise. -->
+        <Border x:Name="Splash" Background="{StaticResource BackgroundBrush}">
+            <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="BITIRIM"
+                               FontFamily="Segoe UI" FontSize="46" FontWeight="Bold"
+                               Foreground="{StaticResource TextBrush}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,2">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#A8E10C" BlurRadius="28" ShadowDepth="0" Opacity="0.28" />
+                        </TextBlock.Effect>
+                    </TextBlock>
+
+                    <TextBlock Text="CLOTHING CREATOR"
+                               FontFamily="Segoe UI" FontSize="17" FontWeight="SemiBold"
+                               Foreground="{StaticResource AccentBrush}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,44">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform X="0" />
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+
+                    <Border Width="320" Height="3" Background="#20241C" CornerRadius="2"
+                            HorizontalAlignment="Center">
+                        <Border x:Name="SplashBar" Width="0" Height="3" HorizontalAlignment="Left"
+                                CornerRadius="2" Background="{StaticResource AccentBrush}" />
+                    </Border>
+
+                    <TextBlock x:Name="SplashStatus" Text="Starting…"
+                               FontFamily="Segoe UI" FontSize="12"
+                               Foreground="{StaticResource MutedBrush}"
+                               HorizontalAlignment="Center" Margin="0,16,0,0" />
+                </StackPanel>
+
+                <TextBlock x:Name="SplashVersion"
+                           VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                           Margin="0,0,0,22" FontFamily="Segoe UI" FontSize="11"
+                           Foreground="#4A5145" Text="v0.1.0" />
+            </Grid>
+        </Border>
+
+        <!-- Shown only when the WebView runtime itself is missing, which is the
+             one failure the React layer cannot report on its own. -->
+        <Border x:Name="FatalPanel" Background="{StaticResource BackgroundBrush}" Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="620">
+                <TextBlock Text="Bitirim Clothing Creator cannot start"
+                           FontFamily="Segoe UI" FontSize="22" FontWeight="SemiBold"
+                           Foreground="{StaticResource TextBrush}" Margin="0,0,0,14" />
+                <TextBlock x:Name="FatalMessage" TextWrapping="Wrap"
+                           FontFamily="Segoe UI" FontSize="14" LineHeight="22"
+                           Foreground="{StaticResource MutedBrush}" />
+                <Button x:Name="FatalButton" Content="Get the WebView2 Runtime"
+                        Margin="0,24,0,0" Padding="18,9" HorizontalAlignment="Left"
+                        Background="{StaticResource AccentBrush}" Foreground="#0E0F0D"
+                        BorderThickness="0" FontWeight="SemiBold" Cursor="Hand"
+                        Click="OnFatalButtonClick" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

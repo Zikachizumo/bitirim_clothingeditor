@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- DPAPI for the AI API key. Windows-only, which matches our target. -->
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
+
+    <!-- Google's own Gen AI SDK for .NET (github.com/googleapis/dotnet-genai).
+         The same SDK family as @google/genai for Node and google-genai for
+         Python; this is the one that matches the host language, so there is no
+         second runtime to ship. -->
+    <PackageReference Include="Google.GenAI" Version="1.21.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- The AI provider's request validation, error mapping and .env parsing are
+         implementation detail, but they are exactly what is worth testing
+         without a live key. -->
+    <InternalsVisibleTo Include="Bitirim.Clothing.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bitirim.Clothing.Core\Bitirim.Clothing.Core.csproj" />
+    <ProjectReference Include="..\Bitirim.Clothing.Export\Bitirim.Clothing.Export.csproj" />
+    <!-- Thumbnails rasterise real drawable geometry; see Library\ThumbnailService.cs. -->
+    <ProjectReference Include="..\Bitirim.Clothing.Textures\Bitirim.Clothing.Textures.csproj" />
+    <ProjectReference Include="..\Bitirim.Clothing.Validation\Bitirim.Clothing.Validation.csproj" />
+  </ItemGroup>
+</Project>

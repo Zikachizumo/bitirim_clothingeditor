@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Bitirim.Clothing.Core\Bitirim.Clothing.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Unlicense (public domain): BC1-BC7 encoding, no native dependencies. -->
+    <PackageReference Include="BCnEncoder.Net" Version="2.2.1" />
+    <!-- MIT, Windows-only by design, which matches our target platform. -->
+    <PackageReference Include="System.Drawing.Common" Version="8.0.10" />
+  </ItemGroup>
+</Project>

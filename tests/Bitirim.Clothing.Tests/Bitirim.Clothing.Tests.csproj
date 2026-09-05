@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!--
+    Build output is redirected off the repository tree (Directory.Build.props), so
+    AppContext.BaseDirectory can no longer be walked upward to find the source tree.
+    Bake the repository root in at compile time instead; without this the fixture
+    tests silently skip on a machine that does have fixtures.
+  -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>RepoRoot</_Parameter1>
+      <_Parameter2>$(MSBuildThisFileDirectory)..\..</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.Core\Bitirim.Clothing.Core.csproj" />
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.Editor\Bitirim.Clothing.Editor.csproj" />
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.FiveFury\Bitirim.Clothing.FiveFury.csproj" />
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.Textures\Bitirim.Clothing.Textures.csproj" />
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.Export\Bitirim.Clothing.Export.csproj" />
+    <ProjectReference Include="..\..\src\Bitirim.Clothing.Validation\Bitirim.Clothing.Validation.csproj" />
+  </ItemGroup>
+</Project>

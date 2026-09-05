@@ -1,0 +1,272 @@
+/* Home --------------------------------------------------------------------- */
+
+.home {
+  display: flex; flex-direction: column; height: 100%;
+  background: radial-gradient(1200px 620px at 22% -8%, #171a14 0%, var(--bg-1) 62%);
+  padding: 0 0 0 0; overflow: auto;
+}
+
+.home-hero { padding: 54px 56px 30px; display: flex; align-items: flex-end; gap: 20px; }
+.home-brand { flex: 1; }
+.home-title {
+  font-size: 44px; font-weight: 800; letter-spacing: 0.02em; line-height: 1;
+  text-shadow: 0 0 42px rgba(168, 225, 12, 0.24);
+}
+.home-subtitle {
+  font-size: 17px; font-weight: 700; letter-spacing: 0.24em;
+  color: var(--accent); margin-top: 5px;
+}
+.home-tagline { font-size: var(--fs-md); color: var(--fg-muted); margin-top: 12px; }
+.home-badges { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+
+.home-columns {
+  flex: 1; display: grid; grid-template-columns: minmax(320px, 420px) 1fr;
+  gap: 34px; padding: 8px 56px 30px;
+}
+
+.home-actions { display: flex; flex-direction: column; gap: 9px; }
+.home-action {
+  display: flex; align-items: center; gap: 14px;
+  padding: 15px 17px; text-align: left; cursor: pointer;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  transition: border-color 110ms ease, background 110ms ease, transform 110ms ease;
+}
+.home-action:hover { background: var(--bg-3); border-color: var(--line-strong); transform: translateX(2px); }
+.home-action.primary { border-color: var(--accent-line); background: var(--accent-soft); }
+.home-action.primary:hover { border-color: var(--accent); }
+.ha-glyph {
+  width: 34px; height: 34px; flex: 0 0 auto; border-radius: var(--radius);
+  background: var(--bg-4); display: flex; align-items: center; justify-content: center;
+  font-size: 15px; color: var(--fg-dim);
+}
+.home-action.primary .ha-glyph { background: var(--accent); color: var(--accent-fg); }
+.ha-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ha-title { font-size: var(--fs-lg); font-weight: 600; }
+.ha-sub { font-size: var(--fs-sm); color: var(--fg-muted); }
+
+.home-recent {
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; overflow: hidden; min-height: 0;
+}
+.home-recent-head {
+  padding: 11px 15px; border-bottom: 1px solid var(--line); background: var(--bg-3);
+  font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--fg-dim);
+}
+.home-recent-empty { padding: 22px 16px; font-size: var(--fs-sm); }
+
+.recent-row {
+  display: grid; grid-template-columns: minmax(120px, 1fr) 2fr auto;
+  gap: 12px; align-items: baseline;
+  padding: 9px 15px; text-align: left; cursor: pointer;
+  background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.recent-row:hover:not(:disabled) { background: var(--bg-3); }
+.recent-row:disabled { opacity: 0.42; cursor: not-allowed; }
+.recent-name { font-size: var(--fs-md); }
+.recent-path { font-size: var(--fs-xs); }
+.recent-date { font-size: var(--fs-xs); }
+
+.home-footer {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 56px 20px; font-size: var(--fs-sm);
+}
+
+/* Wizard -------------------------------------------------------------------- */
+
+.wizard {
+  height: 100%; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(900px 500px at 50% -10%, #171a14 0%, var(--bg-1) 60%);
+  padding: 24px;
+}
+.wizard-card {
+  width: 760px; max-width: 100%; max-height: 100%;
+  display: flex; flex-direction: column; min-height: 0;
+  background: var(--bg-2); border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow);
+}
+.wizard-head { display: flex; align-items: center; gap: 12px; padding: 16px 18px 12px; }
+.wizard-title { font-size: var(--fs-xl); font-weight: 600; }
+.wizard-sub { font-size: var(--fs-sm); margin-top: 2px; }
+
+.wizard-steps {
+  display: flex; gap: 4px; padding: 0 18px 14px; border-bottom: 1px solid var(--line);
+}
+.wizard-step { display: flex; align-items: center; gap: 7px; padding: 4px 10px 4px 4px; }
+.ws-dot {
+  width: 19px; height: 19px; border-radius: 50%;
+  background: var(--bg-4); color: var(--fg-muted);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--fs-xs); font-weight: 700;
+}
+.wizard-step.active .ws-dot { background: var(--accent); color: var(--accent-fg); }
+.wizard-step.done .ws-dot { background: var(--accent-soft); color: var(--accent); }
+.ws-label { font-size: var(--fs-sm); color: var(--fg-muted); }
+.wizard-step.active .ws-label { color: var(--fg); font-weight: 600; }
+
+.wizard-body { padding: 18px; overflow: auto; flex: 1 1 auto; min-height: 240px; }
+.wizard-foot {
+  display: flex; align-items: center; gap: 8px;
+  padding: 13px 18px; border-top: 1px solid var(--line); background: var(--bg-1);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.choice-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 8px; }
+.choice-grid.two { grid-template-columns: 1fr 1fr; }
+.choice {
+  display: flex; flex-direction: column; gap: 5px; align-items: flex-start;
+  padding: 14px 15px; text-align: left; cursor: pointer;
+  background: var(--bg-3); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.choice:hover { border-color: var(--line-strong); }
+.choice.selected { border-color: var(--accent); background: var(--accent-soft); }
+.choice.small { padding: 10px 12px; }
+.choice-title { font-size: var(--fs-md); font-weight: 600; display: flex; align-items: center; gap: 7px; }
+.choice-sub { font-size: var(--fs-xs); color: var(--fg-muted); line-height: 1.45; }
+
+.wizard-note, .wizard-warn {
+  padding: 11px 13px; border-radius: var(--radius);
+  font-size: var(--fs-sm); line-height: 1.55;
+  background: var(--bg-3); border: 1px solid var(--line); color: var(--fg-dim);
+}
+.wizard-warn { border-color: rgba(229, 180, 70, 0.34); color: var(--warn); }
+
+.summary { display: flex; flex-direction: column; }
+.summary-row {
+  display: flex; gap: 14px; padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+}
+.summary-label { flex: 0 0 34%; color: var(--fg-muted); font-size: var(--fs-sm); }
+.summary-value { flex: 1; font-size: var(--fs-sm); word-break: break-all; }
+
+/* Editor -------------------------------------------------------------------- */
+
+.editor { display: flex; flex-direction: column; height: 100%; min-height: 0; position: relative; }
+.editor-main { flex: 1 1 auto; display: flex; min-height: 0; }
+.editor-side { flex: 0 0 auto; min-width: 0; border-right: 1px solid var(--line); }
+.editor-side:last-child { border-right: none; border-left: 1px solid var(--line); }
+.editor-centre { flex: 1 1 auto; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.editor-stage { flex: 1 1 auto; min-height: 0; background: var(--bg-1); }
+
+.split-h { display: flex; height: 100%; min-height: 0; }
+
+.editor-right { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.editor-right-top { flex: 1 1 55%; min-height: 0; border-bottom: 1px solid var(--line); }
+.editor-right-bottom { flex: 1 1 45%; min-height: 0; }
+
+.editor-console { height: 230px; border-top: 1px solid var(--line-strong); }
+
+.editor-hint {
+  position: absolute; bottom: 62px; left: 50%; transform: translateX(-50%);
+  font-size: var(--fs-sm); pointer-events: none;
+}
+
+.tab-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.dot-green { background: var(--ok); }
+.dot-yellow { background: var(--warn); }
+.dot-red { background: var(--error); }
+
+/* ---- v0.2 editor layout -------------------------------------------------- */
+
+.editor-fullscreen .viewport { height: 100%; }
+
+.side-switch {
+  display: flex; align-items: center; gap: 3px;
+  height: var(--panel-header); min-height: var(--panel-header);
+  padding: 0 6px; background: var(--bg-3); border-bottom: 1px solid var(--line);
+}
+.side-title {
+  font-size: var(--fs-sm); font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--fg-dim);
+}
+.side-tab {
+  padding: 3px 9px; border-radius: 3px; cursor: pointer;
+  background: transparent; border: 1px solid transparent;
+  color: var(--fg-muted); font-size: var(--fs-sm);
+}
+.side-tab:hover { color: var(--fg); }
+.side-tab.active {
+  background: var(--accent-soft); border-color: var(--accent-line); color: var(--accent);
+}
+.side-content { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+
+/* Collapsed panels leave a rail rather than vanishing, so nobody has to hunt
+   through a menu to get them back. */
+.rail {
+  width: 16px; flex: 0 0 auto;
+  background: var(--bg-2); border: none;
+  border-right: 1px solid var(--line);
+  color: var(--fg-faint); cursor: pointer; font-size: 10px;
+}
+.rail:hover { background: var(--bg-3); color: var(--accent); }
+.rail-right { border-right: none; border-left: 1px solid var(--line); }
+
+.pane-left { border-right: 1px solid var(--line); min-width: 0; }
+.pane-right { border-left: 1px solid var(--line); min-width: 0; }
+
+/* Below 1360px the inspector is the first thing to give up room; below 1180px
+   the left panel collapses to its rail unless the user opens it. */
+@media (max-width: 1360px) {
+  .editor-side { max-width: 300px; }
+}
+
+/* --------------------------------------------------------------- neon tab */
+
+/*
+   The settings sit above the mask canvas rather than beside it: the canvas is
+   the thing being judged, and a strip costs it no width.
+*/
+.neon-stage {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.neon-stage > :last-child {
+  flex: 1;
+  min-height: 0;
+}
+
+.neon-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+  font-size: var(--fs-xs);
+}
+
+.neon-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.neon-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.neon-field input { width: 68px; }
+
+.neon-sep {
+  width: 1px;
+  align-self: stretch;
+  background: var(--line);
+}
+
+/* First to go when the pane is narrow: it is a reminder, not a control. */
+.neon-hint {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}

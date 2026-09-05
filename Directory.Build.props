@@ -1,0 +1,21 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    Build output is redirected off the repository tree. The worktree path is
+    already ~135 characters, and MSBuild's obj/bin trees push intermediate
+    paths past the Windows MAX_PATH limit. This bit us during Phase 1 while
+    installing the Python runtime; see docs/phase-1-results.md section 10.
+  -->
+  <PropertyGroup>
+    <BaseOutputPath>C:\bcc\build\$(MSBuildProjectName)\bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath>C:\bcc\build\$(MSBuildProjectName)\obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+</Project>

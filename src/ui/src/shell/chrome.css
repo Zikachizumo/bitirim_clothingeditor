@@ -1,0 +1,63 @@
+/* Menu bar ----------------------------------------------------------------- */
+
+.menubar {
+  display: flex; align-items: stretch; gap: 1px;
+  height: 30px; min-height: 30px;
+  background: var(--bg-0); border-bottom: 1px solid var(--line);
+  padding-right: 10px;
+}
+
+.menubar-brand { display: flex; align-items: center; gap: 8px; padding: 0 14px 0 11px; }
+.mb-mark {
+  width: 17px; height: 17px; border-radius: 4px;
+  background: var(--accent); color: var(--accent-fg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+}
+.mb-name { font-size: var(--fs-sm); font-weight: 600; letter-spacing: 0.015em; }
+
+.menu-root { position: relative; display: flex; }
+.menu-title {
+  padding: 0 11px; background: transparent; border: none;
+  color: var(--fg-dim); font-size: var(--fs-md); cursor: pointer;
+}
+.menu-title:hover, .menu-title.open { background: var(--bg-3); color: var(--fg); }
+
+.menu-pop {
+  position: absolute; top: 100%; left: 0; z-index: 60; min-width: 232px;
+  background: var(--bg-2); border: 1px solid var(--line-strong);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 4px; animation: rise 90ms ease;
+}
+.menu-item {
+  display: flex; align-items: center; gap: 16px; width: 100%;
+  padding: 5px 10px; border-radius: 3px;
+  background: transparent; border: none; color: var(--fg);
+  font-size: var(--fs-md); text-align: left; cursor: pointer;
+}
+.menu-item:hover:not(:disabled) { background: var(--accent-soft); color: var(--accent); }
+.menu-item:disabled { color: var(--fg-faint); cursor: default; }
+.menu-shortcut { margin-left: auto; font-size: var(--fs-xs); color: var(--fg-faint); font-family: var(--mono); }
+.menu-sep { height: 1px; background: var(--line); margin: 4px 6px; }
+
+.menubar-project {
+  display: flex; align-items: center; gap: 7px;
+  font-size: var(--fs-sm); color: var(--fg-dim); max-width: 320px;
+}
+.dirty-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+/* Status bar --------------------------------------------------------------- */
+
+.statusbar {
+  display: flex; align-items: center; gap: 12px;
+  height: 24px; min-height: 24px; padding: 0 11px;
+  background: var(--bg-0); border-top: 1px solid var(--line);
+  font-size: var(--fs-xs); color: var(--fg-muted);
+}
+.statusbar .accent { color: var(--accent); }
+.sb-sep { width: 1px; height: 12px; background: var(--line-strong); }
+.sb-item { display: inline-flex; gap: 5px; align-items: baseline; }
+.sb-label { color: var(--fg-faint); }
+.sb-value { color: var(--fg-dim); font-family: var(--mono); max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sb-value.na { color: var(--fg-faint); }
+.sb-version { font-family: var(--mono); }

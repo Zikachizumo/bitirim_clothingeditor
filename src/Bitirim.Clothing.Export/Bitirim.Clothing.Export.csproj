@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Bitirim.Clothing.Core\Bitirim.Clothing.Core.csproj" />
+    <ProjectReference Include="..\Bitirim.Clothing.Validation\Bitirim.Clothing.Validation.csproj" />
+    <ProjectReference Include="..\Bitirim.Clothing.Textures\Bitirim.Clothing.Textures.csproj" />
+  </ItemGroup>
+</Project>
